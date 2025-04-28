@@ -1,0 +1,39 @@
+(defcfg
+  process-unmapped-keys yes
+  linux-use-trackpoint-property yes
+)
+
+(defsrc
+  u i
+  caps a s d f j k l Semicolon
+  spc
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+(defalias
+  a-mod (tap-hold $tap-time $hold-time a lmet)
+  s-mod (tap-hold $tap-time $hold-time s lalt)
+  d-mod (tap-hold $tap-time $hold-time d lsft)
+  f-mod (tap-hold $tap-time $hold-time f lctl)
+  j-mod (tap-hold $tap-time $hold-time j rctl)
+  k-mod (tap-hold $tap-time $hold-time k rsft)
+  l-mod (tap-hold $tap-time $hold-time l ralt)
+  semicolon-mod (tap-hold $tap-time $hold-time Semicolon rmet)
+  spacemode (tap-hold 150 150 spc (layer-while-held spacemods))
+)
+
+(deflayer base
+  _ _
+  esc @a-mod @s-mod @d-mod @f-mod @j-mod @k-mod @l-mod @semicolon-mod
+  @spacemode
+)
+
+(deflayer spacemods
+  bspc del
+  esc @a-mod @s-mod @d-mod @f-mod Enter @k-mod @l-mod @semicolon-mod
+  _
+)
