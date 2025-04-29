@@ -11,10 +11,10 @@ SERVICE_DIR="$HOME/.config/systemd/user/kanata.service"
 
 clone_repo() {
   if [ -d "$INSTALL_DIR" ]; then
-    echo "Updating Matuvim..."
+    echo "Updating HomeRowMods..."
     git -C "$INSTALL_DIR" pull
   else
-    echo "Cloning Matuvim..."
+    echo "Cloning HomeRowMods..."
     git clone "$REPO_URL" "$INSTALL_DIR"
   fi
 }
@@ -65,3 +65,5 @@ setup_kanata() {
 clone_repo
 stow_files
 setup_kanata
+
+echo "Installation complete!"
